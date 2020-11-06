@@ -22,6 +22,14 @@ readline(INPUT_FILE)
       const processedLoadRequests = getCustomerProcessedLoadRequests(
         loadRequest.customer_id
       );
+      if (
+        processedLoadRequests.some(
+          (loadRequest) => loadRequest.id === loadRequest.id
+        )
+      ) {
+        return;
+      }
+
       const isAcceptable = isAcceptableLoad(processedLoadRequests, loadRequest);
       const processedLoadRequest = { ...loadRequest, accepted: isAcceptable };
 
