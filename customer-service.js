@@ -1,20 +1,16 @@
+"use strict";
+exports.__esModule = true;
+exports.saveProcessedLoadRequest = exports.getCustomerProcessedLoadRequests = void 0;
 // Saving in-memory for now
-let processedLoadRequestsByCustomerId = {};
-
-const getCustomerProcessedLoadRequests = (customerId) => {
-  return processedLoadRequestsByCustomerId[customerId] || [];
+var processedLoadRequestsByCustomerId = {};
+var getCustomerProcessedLoadRequests = function (customerId) {
+    return processedLoadRequestsByCustomerId[customerId] || [];
 };
-
-const saveProcessedLoadRequest = (processedLoadRequest) => {
-  const customerId = processedLoadRequest.customer_id;
-  let customerProcessedLoadRequests =
-    processedLoadRequestsByCustomerId[customerId] ||
-    (processedLoadRequestsByCustomerId[customerId] = []);
-
-  customerProcessedLoadRequests.push(processedLoadRequest);
+exports.getCustomerProcessedLoadRequests = getCustomerProcessedLoadRequests;
+var saveProcessedLoadRequest = function (processedLoadRequest) {
+    var customerId = processedLoadRequest.customer_id;
+    var customerProcessedLoadRequests = processedLoadRequestsByCustomerId[customerId] ||
+        (processedLoadRequestsByCustomerId[customerId] = []);
+    customerProcessedLoadRequests.push(processedLoadRequest);
 };
-
-module.exports = {
-  getCustomerProcessedLoadRequests,
-  saveProcessedLoadRequest,
-};
+exports.saveProcessedLoadRequest = saveProcessedLoadRequest;
