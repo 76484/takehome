@@ -1,5 +1,5 @@
-const { expect } = require("chai");
-const { isSameDay, isSameWeek, isAcceptableLoad } = require("./lib");
+import { expect } from "chai";
+import { isSameDay, isSameWeek, isAcceptableLoad } from "./lib";
 
 describe("isSameDay", () => {
   it("should be false when different days", () => {

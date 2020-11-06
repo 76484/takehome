@@ -1,17 +1,17 @@
-const fs = require("fs");
+import { createWriteStream } from "fs";
 
-const readline = require("linebyline");
+import * as readline from "linebyline";
 
-const { isAcceptableLoad } = require("./lib");
-const {
+import { isAcceptableLoad } from "./lib";
+import {
   getCustomerProcessedLoadRequests,
   saveProcessedLoadRequest,
-} = require("./customer-service");
+} from "./customer-service";
 
 const INPUT_FILE = "./input.txt";
 const OUTPUT_FILE = "./compare-output.txt";
 
-const output = fs.createWriteStream(OUTPUT_FILE, {
+const output = createWriteStream(OUTPUT_FILE, {
   flags: "w",
 });
 

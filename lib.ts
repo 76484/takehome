@@ -57,8 +57,4 @@ const isAcceptableLoad = (loadRequests, newLoadRequest) => {
   return true;
 };
 
-module.exports = {
-  isSameDay,
-  isSameWeek,
-  isAcceptableLoad,
-};
+export { isSameDay, isSameWeek, isAcceptableLoad };
