@@ -22,8 +22,9 @@ const isAcceptableLoad = (loadRequests, newLoadRequest) => {
   // A maximum of $20,000 can be loaded per week
   // A maximum of 3 loads can be performed per day, regardless of amount
 
-  const sameDayRequests = loadRequests.filter((loadRequest) =>
-    isSameDay(loadRequest.time, newLoadRequest.time)
+  const sameDayRequests = loadRequests.filter(
+    (loadRequest) =>
+      loadRequest.accepted && isSameDay(loadRequest.time, newLoadRequest.time)
   );
 
   if (sameDayRequests.length === 3) {
@@ -39,8 +40,9 @@ const isAcceptableLoad = (loadRequests, newLoadRequest) => {
     return false;
   }
 
-  const sameWeekRequests = loadRequests.filter((loadRequest) =>
-    isSameWeek(loadRequest.time, newLoadRequest.time)
+  const sameWeekRequests = loadRequests.filter(
+    (loadRequest) =>
+      loadRequest.accepted && isSameWeek(loadRequest.time, newLoadRequest.time)
   );
 
   const sameWeekTotal = sameWeekRequests.reduce(

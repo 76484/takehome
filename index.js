@@ -3,6 +3,10 @@ const fs = require("fs");
 const readline = require("linebyline");
 
 const { isAcceptableLoad } = require("./lib");
+const {
+  getCustomerProcessedLoadRequests,
+  saveProcessedLoadRequest,
+} = require("./customer-service");
 
 const INPUT_FILE = "./input.txt";
 const OUTPUT_FILE = "./compare-output.txt";
@@ -11,33 +15,25 @@ const output = fs.createWriteStream(OUTPUT_FILE, {
   flags: "w",
 });
 
-const customerAccounts = {};
-
 readline(INPUT_FILE)
   .on("line", (line) => {
     try {
       const loadRequest = JSON.parse(line);
-
-      if (!customerAccounts[loadRequest.customer_id]) {
-        customerAccounts[loadRequest.customer_id] = [];
-      }
-
-      const isAcceptable = isAcceptableLoad(
-        customerAccounts[loadRequest.customer_id],
-        loadRequest
+      const processedLoadRequests = getCustomerProcessedLoadRequests(
+        loadRequest.customer_id
       );
+      const isAcceptable = isAcceptableLoad(processedLoadRequests, loadRequest);
+      const processedLoadRequest = { ...loadRequest, accepted: isAcceptable };
+
+      saveProcessedLoadRequest(processedLoadRequest);
 
       output.write(
         JSON.stringify({
-          id: loadRequest.id,
-          customer_id: loadRequest.customer_id,
+          id: processedLoadRequest.id,
+          customer_id: processedLoadRequest.customer_id,
           accepted: isAcceptable,
         }) + "\n"
       );
-
-      if (isAcceptable) {
-        customerAccounts[loadRequest.customer_id].push(loadRequest);
-      }
     } catch (err) {
       console.error(err);
     }
