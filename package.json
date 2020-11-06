@@ -6,6 +6,7 @@
   "scripts": {
     "diffcount": "diff ./output.txt ./compare-output.txt | grep \"^>\" | wc -l",
     "start": "node index.js",
+    "poststart": "npm run diffcount",
     "test": "mocha"
   },
   "keywords": [],
