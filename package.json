@@ -1,0 +1,22 @@
+{
+  "name": "takehome",
+  "version": "1.0.0",
+  "description": "In finance, it's common for accounts to have so-called \"velocity limits\". In this task, you'll write a program that accepts or declines attempts to load funds into customers' accounts in real-time.",
+  "main": "index.js",
+  "scripts": {
+    "diffcount": "diff ./output.txt ./compare-output.txt | grep \"^>\" | wc -l",
+    "start": "node index.js",
+    "test": "mocha"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "chai": "^4.2.0",
+    "linebyline": "^1.3.0",
+    "luxon": "^1.25.0",
+    "mocha": "^8.2.1",
+    "numeral": "^2.0.6"
+  },
+  "devDependencies": {}
+}
