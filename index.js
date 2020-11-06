@@ -14,7 +14,7 @@ const output = fs.createWriteStream(OUTPUT_FILE, {
 const customerAccounts = {};
 
 readline(INPUT_FILE)
-  .on("line", function (line) {
+  .on("line", (line) => {
     try {
       const loadRequest = JSON.parse(line);
 
