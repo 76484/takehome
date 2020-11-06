@@ -70,7 +70,6 @@ describe("isAcceptableLoad", () => {
           customer_id: "1",
           load_amount: "$4.00",
           time: "2000-01-01T00:00:04Z",
-          accepted: true,
         }
       )
     ).to.be.false;
@@ -93,7 +92,6 @@ describe("isAcceptableLoad", () => {
           customer_id: "1",
           load_amount: "$1.00",
           time: "2000-01-01T00:00:01Z",
-          accepted: true,
         }
       )
     ).to.be.false;
@@ -116,7 +114,6 @@ describe("isAcceptableLoad", () => {
         customer_id: "1",
         load_amount: "$100.00",
         time: "2000-01-01T00:00:00Z",
-        accepted: true,
       })
     ).to.be.true;
 
@@ -132,7 +129,7 @@ describe("isAcceptableLoad", () => {
           },
         ],
         {
-          id: "1",
+          id: "2",
           customer_id: "1",
           load_amount: "$1.00",
           time: "2000-01-01T00:00:01Z",
@@ -159,7 +156,6 @@ describe("isAcceptableLoad", () => {
           customer_id: "1",
           load_amount: "$1.00",
           time: "2000-01-04T00:00:00Z",
-          accepted: true,
         }
       )
     ).to.be.false;
@@ -203,7 +199,6 @@ describe("isAcceptableLoad", () => {
           customer_id: "1",
           load_amount: "$1.00",
           time: "2000-01-07T00:00:00Z",
-          accepted: true,
         }
       )
     ).to.be.true;
@@ -233,7 +228,6 @@ describe("isAcceptableLoad", () => {
           customer_id: "1",
           load_amount: "$50.00",
           time: "2000-01-01T00:00:03Z",
-          accepted: true,
         }
       )
     ).to.be.true;
