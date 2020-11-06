@@ -1,3 +1,4 @@
 node_modules/
 compare-output.txt
+index.js
 lib.js
