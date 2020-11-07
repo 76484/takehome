@@ -2,6 +2,7 @@ import { createWriteStream } from "fs";
 
 import * as readline from "linebyline";
 
+import { LoadRequest, ProcessedLoadRequest } from "./types";
 import { isAcceptableLoad } from "./lib";
 import {
   getCustomerProcessedLoadRequests,
@@ -16,9 +17,9 @@ const output = createWriteStream(OUTPUT_FILE, {
 });
 
 readline(INPUT_FILE)
-  .on("line", (line) => {
+  .on("line", (line: string) => {
     try {
-      const loadRequest = JSON.parse(line);
+      const loadRequest: LoadRequest = JSON.parse(line);
       const processedLoadRequests = getCustomerProcessedLoadRequests(
         loadRequest.customer_id
       );
@@ -31,7 +32,7 @@ readline(INPUT_FILE)
       }
 
       const isAcceptable = isAcceptableLoad(processedLoadRequests, loadRequest);
-      const processedLoadRequest = { ...loadRequest, accepted: isAcceptable };
+      const processedLoadRequest: ProcessedLoadRequest = { ...loadRequest, accepted: isAcceptable };
 
       saveProcessedLoadRequest(processedLoadRequest);
 

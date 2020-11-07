@@ -1,14 +1,16 @@
-const { DateTime } = require("luxon");
-const numeral = require("numeral");
+import { DateTime } from "luxon";
+import numeral from "numeral";
 
-const isSameDay = (isoDate1, isoDate2) => {
+import { LoadRequest, ProcessedLoadRequest } from "./types";
+
+const isSameDay = (isoDate1: string, isoDate2: string) => {
   const date1 = DateTime.fromISO(isoDate1).toUTC();
   const date2 = DateTime.fromISO(isoDate2).toUTC();
 
   return date1.startOf("day").equals(date2.startOf("day"));
 };
 
-const isSameWeek = (isoDate1, isoDate2) => {
+const isSameWeek = (isoDate1: string, isoDate2: string) => {
   const date1 = DateTime.fromISO(isoDate1).toUTC();
   const date2 = DateTime.fromISO(isoDate2).toUTC();
   const weekStartDate1 = date1.minus({ days: date1.weekday - 1 });
@@ -17,7 +19,7 @@ const isSameWeek = (isoDate1, isoDate2) => {
   return weekStartDate1.startOf("day").equals(weekStartDate2.startOf("day"));
 };
 
-const isAcceptableLoad = (loadRequests, newLoadRequest) => {
+const isAcceptableLoad = (loadRequests: ProcessedLoadRequest[], newLoadRequest: LoadRequest) => {
   // A maximum of $5,000 can be loaded per day
   // A maximum of $20,000 can be loaded per week
   // A maximum of 3 loads can be performed per day, regardless of amount

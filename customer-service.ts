@@ -1,11 +1,13 @@
-// Saving in-memory for now
-let processedLoadRequestsByCustomerId = {};
+import { IndexedProcessedLoadRequests, ProcessedLoadRequest } from "./types";
 
-const getCustomerProcessedLoadRequests = (customerId) => {
+// Saving in-memory for now
+let processedLoadRequestsByCustomerId: IndexedProcessedLoadRequests = {};
+
+const getCustomerProcessedLoadRequests = (customerId: string) => {
   return processedLoadRequestsByCustomerId[customerId] || [];
 };
 
-const saveProcessedLoadRequest = (processedLoadRequest) => {
+const saveProcessedLoadRequest = (processedLoadRequest: ProcessedLoadRequest) => {
   const customerId = processedLoadRequest.customer_id;
   let customerProcessedLoadRequests =
     processedLoadRequestsByCustomerId[customerId] ||

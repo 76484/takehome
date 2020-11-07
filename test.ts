@@ -102,7 +102,6 @@ describe("isAcceptableLoad", () => {
         customer_id: "1",
         load_amount: "$5001.00",
         time: "2000-01-01T00:00:00Z",
-        accepted: true,
       })
     ).to.be.false;
   });
