@@ -1,6 +1,6 @@
 import { createWriteStream } from "fs";
 
-import * as readline from "linebyline";
+import LineByLineReader from "line-by-line";
 
 import { LoadRequest, ProcessedLoadRequest } from "./types";
 import { isAcceptableLoad } from "./lib";
@@ -16,7 +16,7 @@ const output = createWriteStream(OUTPUT_FILE, {
   flags: "w",
 });
 
-readline(INPUT_FILE)
+new LineByLineReader(INPUT_FILE)
   .on("line", (line: string) => {
     try {
       const loadRequest: LoadRequest = JSON.parse(line);
