@@ -7,7 +7,7 @@
     "build": "tsc",
     "diffcount": "diff ./output.txt ./compare-output.txt | grep \"^>\" | wc -l",
     "prestart": "npm run build",
-    "start": "node index.js",
+    "start": "node ./dist/index.js",
     "poststart": "npm run diffcount",
     "test": "ts-mocha ./test.ts"
   },
