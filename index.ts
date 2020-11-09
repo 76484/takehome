@@ -25,7 +25,7 @@ new LineByLineReader(INPUT_FILE)
       );
       if (
         processedLoadRequests.some(
-          (loadRequest) => loadRequest.id === loadRequest.id
+          (processedLoadRequest) => processedLoadRequest.id === loadRequest.id
         )
       ) {
         return;
