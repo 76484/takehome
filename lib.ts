@@ -1,6 +1,10 @@
 import { DateTime } from "luxon";
 import numeral from "numeral";
 
+const LIMIT_DAILY_LOADS = 3;
+const LIMIT_DAILY_DOLLARS = 5000;
+const LIMIT_WEEKLY_DOLLARS = 20000;
+
 const isSameDay = (isoDate1: string, isoDate2: string) => {
   const date1 = DateTime.fromISO(isoDate1).toUTC();
   const date2 = DateTime.fromISO(isoDate2).toUTC();
@@ -18,16 +22,12 @@ const isSameWeek = (isoDate1: string, isoDate2: string) => {
 };
 
 const isAcceptableLoadRequest = (processedLoadRequests: ProcessedLoadRequest[], loadRequest: LoadRequest) => {
-  // A maximum of $5,000 can be loaded per day
-  // A maximum of $20,000 can be loaded per week
-  // A maximum of 3 loads can be performed per day, regardless of amount
-
   const sameDayAccptedRequests = processedLoadRequests.filter(
     (processedLoadRequest) =>
     processedLoadRequest.accepted && isSameDay(processedLoadRequest.time, loadRequest.time)
   );
 
-  if (sameDayAccptedRequests.length === 3) {
+  if (sameDayAccptedRequests.length === LIMIT_DAILY_LOADS) {
     return false;
   }
 
@@ -36,7 +36,7 @@ const isAcceptableLoadRequest = (processedLoadRequests: ProcessedLoadRequest[], 
     0
   );
 
-  if (sameDayTotal + numeral(loadRequest.load_amount).value() > 5000) {
+  if (sameDayTotal + numeral(loadRequest.load_amount).value() > LIMIT_DAILY_DOLLARS) {
     return false;
   }
 
@@ -50,7 +50,7 @@ const isAcceptableLoadRequest = (processedLoadRequests: ProcessedLoadRequest[], 
     0
   );
 
-  if (sameWeekTotal + numeral(loadRequest.load_amount).value() > 20000) {
+  if (sameWeekTotal + numeral(loadRequest.load_amount).value() > LIMIT_WEEKLY_DOLLARS) {
     return false;
   }
 
