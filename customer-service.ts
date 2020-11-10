@@ -1,5 +1,3 @@
-import { IndexedProcessedLoadRequests, ProcessedLoadRequest } from "./types";
-
 // Saving in-memory for now
 let processedLoadRequestsByCustomerId: IndexedProcessedLoadRequests = {};
 

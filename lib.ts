@@ -1,8 +1,6 @@
 import { DateTime } from "luxon";
 import numeral from "numeral";
 
-import { LoadRequest, ProcessedLoadRequest } from "./types";
-
 const isSameDay = (isoDate1: string, isoDate2: string) => {
   const date1 = DateTime.fromISO(isoDate1).toUTC();
   const date2 = DateTime.fromISO(isoDate2).toUTC();

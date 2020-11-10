@@ -2,7 +2,6 @@ import { createWriteStream } from "fs";
 
 import LineByLineReader from "line-by-line";
 
-import { LoadRequest, ProcessedLoadRequest } from "./types";
 import { isAcceptableLoad } from "./lib";
 import {
   getCustomerProcessedLoadRequests,
