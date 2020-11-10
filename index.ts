@@ -2,7 +2,7 @@ import { createWriteStream } from "fs";
 
 import LineByLineReader from "line-by-line";
 
-import { isAcceptableLoad } from "./lib";
+import { isAcceptableLoadRequest } from "./lib";
 import {
   getCustomerProcessedLoadRequests,
   saveProcessedLoadRequest,
@@ -30,7 +30,7 @@ new LineByLineReader(INPUT_FILE)
         return;
       }
 
-      const isAcceptable = isAcceptableLoad(processedLoadRequests, loadRequest);
+      const isAcceptable = isAcceptableLoadRequest(processedLoadRequests, loadRequest);
       const processedLoadRequest: ProcessedLoadRequest = { ...loadRequest, accepted: isAcceptable };
 
       saveProcessedLoadRequest(processedLoadRequest);

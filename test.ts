@@ -1,5 +1,5 @@
 import { expect } from "chai";
-import { isSameDay, isSameWeek, isAcceptableLoad } from "./lib";
+import { isSameDay, isSameWeek, isAcceptableLoadRequest } from "./lib";
 
 describe("isSameDay", () => {
   it("should be false when different days", () => {
@@ -38,10 +38,10 @@ describe("isSameWeek", () => {
   });
 });
 
-describe("isAcceptableLoad", () => {
+describe("isAcceptableLoadRequest", () => {
   it("should be false if 3 accepted loads have been added on same day", () => {
     expect(
-      isAcceptableLoad(
+      isAcceptableLoadRequest(
         [
           {
             id: "1",
@@ -77,7 +77,7 @@ describe("isAcceptableLoad", () => {
 
   it("should be false if new total for day would exceed $5,000", () => {
     expect(
-      isAcceptableLoad(
+      isAcceptableLoadRequest(
         [
           {
             id: "1",
@@ -97,7 +97,7 @@ describe("isAcceptableLoad", () => {
     ).to.be.false;
 
     expect(
-      isAcceptableLoad([], {
+      isAcceptableLoadRequest([], {
         id: "1",
         customer_id: "1",
         load_amount: "$5001.00",
@@ -108,7 +108,7 @@ describe("isAcceptableLoad", () => {
 
   it("should be true if new total for day would not exceed $5,0000", () => {
     expect(
-      isAcceptableLoad([], {
+      isAcceptableLoadRequest([], {
         id: "1",
         customer_id: "1",
         load_amount: "$100.00",
@@ -117,7 +117,7 @@ describe("isAcceptableLoad", () => {
     ).to.be.true;
 
     expect(
-      isAcceptableLoad(
+      isAcceptableLoadRequest(
         [
           {
             id: "1",
@@ -139,7 +139,7 @@ describe("isAcceptableLoad", () => {
 
   it("should be false if new total for week would exceed $20,000", () => {
     expect(
-      isAcceptableLoad(
+      isAcceptableLoadRequest(
         [
           {
             id: "1",
@@ -161,7 +161,7 @@ describe("isAcceptableLoad", () => {
 
   it("should be true if new total for week would not exceed $20,0000", () => {
     expect(
-      isAcceptableLoad(
+      isAcceptableLoadRequest(
         [
           {
             id: "1",
@@ -204,7 +204,7 @@ describe("isAcceptableLoad", () => {
 
   it("should include only accepted requests when totalling", () => {
     expect(
-      isAcceptableLoad(
+      isAcceptableLoadRequest(
         [
           {
             id: "1",
